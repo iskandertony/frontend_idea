@@ -1,0 +1,26 @@
+.task-card {
+  background: #fff;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+
+  &.overdue {
+    border: 2px solid red;
+  }
+
+  p {
+    margin: 0 0 8px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  span {
+    font-size: 12px;
+    color: #666;
+  }
+}
