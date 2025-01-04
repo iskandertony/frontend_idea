@@ -1,16 +1,23 @@
 .trash-bin {
-  margin-top: 16px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.1); // Фон корзины
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100px;
-  background: #fff5f5;
-  border: 2px dashed red;
-  border-radius: 8px;
+  border-radius: 50%;
   cursor: pointer;
   transition: background 0.3s ease;
-}
 
-.trash-bin:hover {
-  background: #ffe5e5;
+  &:hover {
+    background: rgba(255, 0, 0, 0.2); // Красный фон при наведении
+  }
+
+  svg {
+    font-size: 24px;
+    color: white; // Белая иконка
+  }
 }

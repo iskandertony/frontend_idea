@@ -1,0 +1,11 @@
+.sortable-task-card {
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+
+  &.dragging {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05); // Лёгкое увеличение при перетаскивании
+    z-index: 100;
+  }
+}

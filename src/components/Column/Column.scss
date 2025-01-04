@@ -1,12 +1,13 @@
 .kanban-column {
-  background: #f4f5f7;
+  background: rgba(0, 0, 0, 0.7); // 70% чёрного для фона колонок
   border-radius: 8px;
   padding: 16px;
   min-width: 250px;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  color: rgba(255, 255, 255, 0.87); // Белый текст
 }
 
 .task-list {
@@ -16,12 +17,20 @@
   gap: 8px;
 }
 
+.task-card {
+  background: rgba(255, 255, 255, 0.1); // 10% белого для карточек
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  color: rgba(255, 255, 255, 0.6); // Регулярный белый текст
+}
+
 .empty-placeholder {
   padding: 16px;
   text-align: center;
   font-style: italic;
-  color: #888;
-  background: #f4f5f7;
-  border: 2px dashed #ccc;
+  color: rgba(255, 255, 255, 0.6); // Белый текст с прозрачностью
+  background: rgba(255, 255, 255, 0.1); // Плейсхолдер совпадает с карточкой
+  border: 2px dashed rgba(255, 255, 255, 0.2); // Светлая пунктирная рамка
   border-radius: 8px;
 }
