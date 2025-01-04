@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { DndContext, closestCenter, DragOverlay } from '@dnd-kit/core';
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
+import { useDroppable } from '@dnd-kit/core'; // Импортируем useDroppable
 import tasksDataRaw from '../../data/tasks.json';
 import { TaskType } from '../../types/Task';
 import Column from '../Column/Column';
@@ -36,17 +37,14 @@ const KanbanBoard: React.FC = () => {
       return;
     }
 
-    // Если перетащено на корзину
     if (over.id === 'trash-bin') {
       console.log(`Deleting task ${active.id}...`);
       setTasks((prevTasks) => prevTasks.filter((task) => task.id.toString() !== active.id));
       return;
     }
 
-    // Определяем колонку назначения
     let overColumn: TaskType['type'] | undefined = initialColumns.find((col) => col === over.id);
 
-    // Если over.id — это id задачи, ищем её колонку
     if (!overColumn) {
       const overTask = tasks.find((task) => task.id.toString() === over.id);
       overColumn = overTask?.type;
@@ -57,7 +55,6 @@ const KanbanBoard: React.FC = () => {
       return;
     }
 
-    // Перемещаем задачу в новую колонку
     const activeTask = tasks.find((task) => task.id.toString() === active.id);
     if (activeTask && overColumn !== activeTask.type) {
       console.log(`Moving task ${activeTask.id} to column ${overColumn}`);
@@ -65,7 +62,6 @@ const KanbanBoard: React.FC = () => {
       setTasks([...tasks]);
     }
   };
-
 
   const handleAddTask = (taskText: string, endDay: string) => {
     if (currentColumn) {
@@ -81,8 +77,14 @@ const KanbanBoard: React.FC = () => {
     setModalVisible(false);
   };
 
-  const handleDeleteAllDoneTasks = () => {
-    setTasks((prevTasks) => prevTasks.filter((task) => task.type !== 'done'));
+  const TrashBin: React.FC = () => {
+    const { setNodeRef } = useDroppable({ id: 'trash-bin' });
+
+    return (
+      <div className="trash-bin" ref={setNodeRef}>
+        <DeleteOutlined style={{ fontSize: 48, color: 'red', cursor: 'pointer' }} />
+      </div>
+    );
   };
 
   return (
@@ -110,9 +112,7 @@ const KanbanBoard: React.FC = () => {
         ))}
 
         {/* Корзина для удаления */}
-        <div className="trash-bin" id="trash-bin" onClick={handleDeleteAllDoneTasks}>
-          <DeleteOutlined style={{ fontSize: 48, color: 'red', cursor: 'pointer' }} />
-        </div>
+        <TrashBin />
       </div>
 
       <DragOverlay>
