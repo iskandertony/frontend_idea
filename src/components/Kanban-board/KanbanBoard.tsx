@@ -17,15 +17,17 @@ const KanbanBoard: React.FC = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [currentColumn, setCurrentColumn] = useState<TaskType['type'] | null>(null);
 
-  const tasksByType = (type: TaskType['type']) => {
-    return tasks.filter((task) => task.type === type).sort((a, b) => a.startDay - b.startDay);
-  };
+  // Фильтруем задачи по их типу и сортируем по startDay
+  const tasksByType = (type: TaskType['type']) =>
+    tasks.filter((task) => task.type === type).sort((a, b) => a.startDay - b.startDay);
 
+  // Обработка начала перетаскивания
   const handleDragStart = (event: any) => {
     const activeTask = tasks.find((task) => task.id.toString() === event.active.id);
     setActiveTask(activeTask || null);
   };
 
+  // Обработка завершения перетаскивания
   const handleDragEnd = (event: any) => {
     const { active, over } = event;
 
@@ -34,10 +36,12 @@ const KanbanBoard: React.FC = () => {
     if (!over) return;
 
     if (over.id === 'trash-bin') {
+      // Удаляем задачу, если она была перетащена на корзину
       setTasks((prevTasks) => prevTasks.filter((task) => task.id.toString() !== active.id));
       return;
     }
 
+    // Определяем колонку, в которую перетащили задачу
     let overColumn: TaskType['type'] | undefined = initialColumns.find((col) => col === over.id);
 
     if (!overColumn) {
@@ -49,11 +53,13 @@ const KanbanBoard: React.FC = () => {
 
     const activeTask = tasks.find((task) => task.id.toString() === active.id);
     if (activeTask && overColumn !== activeTask.type) {
+      // Перемещаем задачу в новую колонку
       activeTask.type = overColumn;
       setTasks([...tasks]);
     }
   };
 
+  // Добавление новой задачи
   const handleAddTask = (taskText: string, endDay: string) => {
     if (currentColumn) {
       const newTask: TaskType = {
@@ -66,6 +72,11 @@ const KanbanBoard: React.FC = () => {
       setTasks([...tasks, newTask]);
     }
     setModalVisible(false);
+  };
+
+  // Удаление всех задач в колонке "done"
+  const clearDoneTasks = () => {
+    setTasks((prevTasks) => prevTasks.filter((task) => task.type !== 'done'));
   };
 
   return (
@@ -92,14 +103,15 @@ const KanbanBoard: React.FC = () => {
           </SortableContext>
         ))}
 
-        <TrashBin />
-
+        {/* Компонент корзины для удаления */}
+        <TrashBin onClearDone={clearDoneTasks} />
       </div>
 
       <DragOverlay>
         {activeTask && <SortableTaskCard task={activeTask} />}
       </DragOverlay>
 
+      {/* Модальное окно для добавления задачи */}
       <AddTaskModal
         visible={modalVisible}
         onAdd={handleAddTask}
