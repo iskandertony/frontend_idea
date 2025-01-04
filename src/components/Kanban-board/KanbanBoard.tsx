@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { DndContext, closestCenter, DragOverlay } from '@dnd-kit/core';
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
-import { useDroppable } from '@dnd-kit/core'; // Импортируем useDroppable
 import tasksDataRaw from '../../data/tasks.json';
 import { TaskType } from '../../types/Task';
 import Column from '../Column/Column';
 import AddTaskModal from '../Add-task-modal/AddTaskModal';
-import TaskCard from '../Card/TaskCard';
+import SortableTaskCard from '../Card-sort/SortableTaskCard';
+import TrashBin from '../Trash-bin/TrashBin';
 import './KanbanBoard.scss';
-import { DeleteOutlined } from '@ant-design/icons';
 
 const initialColumns: TaskType['type'][] = ['todo', 'in_progress', 'review', 'done'];
 
@@ -32,13 +31,9 @@ const KanbanBoard: React.FC = () => {
 
     setActiveTask(null);
 
-    if (!over) {
-      console.warn('Task was dropped outside of any valid column or trash bin.');
-      return;
-    }
+    if (!over) return;
 
     if (over.id === 'trash-bin') {
-      console.log(`Deleting task ${active.id}...`);
       setTasks((prevTasks) => prevTasks.filter((task) => task.id.toString() !== active.id));
       return;
     }
@@ -50,14 +45,10 @@ const KanbanBoard: React.FC = () => {
       overColumn = overTask?.type;
     }
 
-    if (!overColumn) {
-      console.warn('Task dropped outside of valid column.');
-      return;
-    }
+    if (!overColumn) return;
 
     const activeTask = tasks.find((task) => task.id.toString() === active.id);
     if (activeTask && overColumn !== activeTask.type) {
-      console.log(`Moving task ${activeTask.id} to column ${overColumn}`);
       activeTask.type = overColumn;
       setTasks([...tasks]);
     }
@@ -75,16 +66,6 @@ const KanbanBoard: React.FC = () => {
       setTasks([...tasks, newTask]);
     }
     setModalVisible(false);
-  };
-
-  const TrashBin: React.FC = () => {
-    const { setNodeRef } = useDroppable({ id: 'trash-bin' });
-
-    return (
-      <div className="trash-bin" ref={setNodeRef}>
-        <DeleteOutlined style={{ fontSize: 48, color: 'red', cursor: 'pointer' }} />
-      </div>
-    );
   };
 
   return (
@@ -111,17 +92,12 @@ const KanbanBoard: React.FC = () => {
           </SortableContext>
         ))}
 
-        {/* Корзина для удаления */}
         <TrashBin />
+
       </div>
 
       <DragOverlay>
-        {activeTask ? (
-          <TaskCard
-            task={activeTask}
-            isOverdue={activeTask.endDay < Date.now() && activeTask.type !== 'done'}
-          />
-        ) : null}
+        {activeTask && <SortableTaskCard task={activeTask} />}
       </DragOverlay>
 
       <AddTaskModal
