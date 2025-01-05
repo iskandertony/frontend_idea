@@ -1,31 +1,31 @@
 .task-search {
   display: flex;
   justify-content: center;
-  margin-bottom: 16px; /* Отступ снизу для разделения с остальными элементами */
+  margin-bottom: 16px;
 
   input {
-    width: 430px; /* Fixed width */
-    height: 40px; /* Fixed height */
-    padding-left: 20px; /* Padding для внутреннего отступа */
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Полупрозрачный белый */
-    background: rgba(255, 255, 255, 0.07); /* Полупрозрачный белый фон */
-    border-radius: 20px; /* Скругление верхнего левого угла */
-    color: #ffffff; /* Белый текст */
-    font-size: 14px; /* Размер текста */
+    width: 430px;
+    height: 40px;
+    padding-left: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.07);
+    border-radius: 20px;
+    color: #ffffff;
+    font-size: 14px;
     outline: none;
     transition: all 0.3s ease;
 
     &::placeholder {
-      color: rgba(255, 255, 255, 0.5); /* Полупрозрачный плейсхолдер */
+      color: rgba(255, 255, 255, 0.5);
     }
 
     &:hover {
-      border-color: #0184cf; /* Голубая рамка при наведении */
+      border-color: #0184cf;
     }
 
     &:focus {
-      border-color: #0184cf; /* Голубая рамка при фокусе */
-      background: rgba(255, 255, 255, 0.12); /* Ярче фон */
+      border-color: #0184cf;
+      background: rgba(255, 255, 255, 0.12);
     }
   }
 }

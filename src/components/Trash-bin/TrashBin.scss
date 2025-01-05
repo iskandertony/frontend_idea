@@ -6,11 +6,11 @@
 
   svg {
     font-size: 20px;
-    color: rgba(255, 255, 255, 0.6); // Цвет иконки корзины
+    color: rgba(255, 255, 255, 0.6);
     transition: color 0.2s ease;
 
     &:hover {
-      color: rgba(255, 255, 255, 0.9); // Немного ярче при наведении
+      color: rgba(255, 255, 255, 0.9);
     }
   }
 }

@@ -20,7 +20,7 @@ const AddTaskModal: React.FC<AddTaskModalProps> = ({ visible, onAdd, onCancel })
   };
 
   return (
-    <Modal title="Add New Task" visible={visible} onOk={handleAdd} onCancel={onCancel}>
+    <Modal title="Add New Task" open={visible} onOk={handleAdd} onCancel={onCancel}>
       <Form layout="vertical">
         <Form.Item label="Task Description">
           <Input

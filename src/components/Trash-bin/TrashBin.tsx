@@ -4,7 +4,7 @@ import { DeleteOutlined } from '@ant-design/icons';
 import './TrashBin.scss';
 
 interface TrashBinProps {
-  onClearDone: () => void; // Пропс для удаления всех задач в колонке "done"
+  onClearDone: () => void;
 }
 
 const TrashBin: React.FC<TrashBinProps> = ({ onClearDone }) => {

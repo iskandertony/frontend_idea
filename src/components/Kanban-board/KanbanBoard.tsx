@@ -19,7 +19,6 @@ const KanbanBoard: React.FC = () => {
   const [currentColumn, setCurrentColumn] = useState<TaskType['type'] | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>('');
 
-  // Инициализация задач
   useEffect(() => {
     const savedTasks = localStorage.getItem('tasks');
     const parsedTasks = savedTasks ? JSON.parse(savedTasks) : null;
@@ -34,14 +33,12 @@ const KanbanBoard: React.FC = () => {
     }
   }, []);
 
-  // Сохранение задач в localStorage при их изменении
   useEffect(() => {
     if (tasks.length > 0) {
       localStorage.setItem('tasks', JSON.stringify(tasks));
     }
   }, [tasks]);
 
-  // Фильтрация задач
   useEffect(() => {
     if (searchQuery === '') {
       setFilteredTasks(tasks);
@@ -50,7 +47,6 @@ const KanbanBoard: React.FC = () => {
 
     const lowerCaseQuery = searchQuery.toLowerCase();
 
-    // Проверка на формат даты dd.mm.yyyy
     if (/\d{2}\.\d{2}\.\d{4}/.test(searchQuery)) {
       const [day, month, year] = searchQuery.split('.');
       const queryDate = new Date(`${year}-${month}-${day}`).getTime();
@@ -64,7 +60,6 @@ const KanbanBoard: React.FC = () => {
         )
       );
     } else {
-      // Фильтрация по описанию
       setFilteredTasks(
         tasks.filter((task) => task.text.toLowerCase().includes(lowerCaseQuery))
       );

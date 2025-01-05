@@ -3,7 +3,7 @@ import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import TaskCard from '../Card/TaskCard';
 import { TaskType } from '../../types/Task';
-import './SortableTaskCard.scss'; // Подключим стили
+import './SortableTaskCard.scss';
 
 interface SortableTaskCardProps {
   task: TaskType;

@@ -5,7 +5,7 @@
 
   &.dragging {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    transform: scale(1.05); // Лёгкое увеличение при перетаскивании
+    transform: scale(1.05);
     z-index: 100;
   }
 }

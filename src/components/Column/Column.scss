@@ -1,5 +1,5 @@
 .kanban-column {
-  background: rgba(0, 0, 0, 0.7); // 70% чёрного для фона колонок
+  background: rgba(0, 0, 0, 0.7);
   border-radius: 8px;
   padding: 16px;
   min-width: 250px;
@@ -8,7 +8,7 @@
   height: fit-content;
   gap: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  color: rgba(255, 255, 255, 0.87); // Белый текст
+  color: rgba(255, 255, 255, 0.87);
 
 
   .add-task {
@@ -35,20 +35,20 @@
 }
 
 .task-card {
-  background: rgba(255, 255, 255, 0.1); // 10% белого для карточек
+  background: rgba(255, 255, 255, 0.1);
   padding: 10px;
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  color: rgba(255, 255, 255, 0.6); // Регулярный белый текст
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .empty-placeholder {
   padding: 16px;
   text-align: center;
   font-style: italic;
-  color: rgba(255, 255, 255, 0.6); // Белый текст с прозрачностью
-  background: rgba(255, 255, 255, 0.1); // Плейсхолдер совпадает с карточкой
-  border: 2px dashed rgba(255, 255, 255, 0.2); // Светлая пунктирная рамка
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px dashed rgba(255, 255, 255, 0.2);
   border-radius: 8px;
 }
 
