@@ -1,0 +1,5 @@
+.content {
+    background: url('../assets/imgs/image.png') no-repeat center center fixed;
+    background-size: cover;
+    overflow: auto;
+}

@@ -6,13 +6,19 @@ $color-red: rgba(252, 54, 57, 0.6);
 $color-blue: #0184CF;
 
 .kanban-board {
-  background: url('../../assets/imgs/image.png') no-repeat center center fixed;
-  background-size: cover;
+  max-width: 1920px;
+  margin: 0 auto;
   padding: 20px;
   display: flex;
   gap: 20px;
   min-height: 100vh;
   color: $color-text-bold;
+
+  .column-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: $color-text-bold;
+  }
 }
 
 .column {
@@ -24,13 +30,6 @@ $color-blue: #0184CF;
   display: flex;
   flex-direction: column;
   gap: 10px;
-}
-
-.column-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 10px;
-  color: $color-text-bold;
 }
 
 .task-list {
@@ -55,19 +54,4 @@ $color-blue: #0184CF;
   }
 }
 
-.trash-bin {
-  margin-top: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100px;
-  background: $color-card-bg;
-  border: 2px dashed $color-red;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s ease;
 
-  &:hover {
-    background: rgba(252, 54, 57, 0.2);
-  }
-}
