@@ -1,0 +1,31 @@
+.task-search {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px; /* Отступ снизу для разделения с остальными элементами */
+
+  input {
+    width: 430px; /* Fixed width */
+    height: 40px; /* Fixed height */
+    padding-left: 20px; /* Padding для внутреннего отступа */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Полупрозрачный белый */
+    background: rgba(255, 255, 255, 0.07); /* Полупрозрачный белый фон */
+    border-radius: 20px; /* Скругление верхнего левого угла */
+    color: #ffffff; /* Белый текст */
+    font-size: 14px; /* Размер текста */
+    outline: none;
+    transition: all 0.3s ease;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.5); /* Полупрозрачный плейсхолдер */
+    }
+
+    &:hover {
+      border-color: #0184cf; /* Голубая рамка при наведении */
+    }
+
+    &:focus {
+      border-color: #0184cf; /* Голубая рамка при фокусе */
+      background: rgba(255, 255, 255, 0.12); /* Ярче фон */
+    }
+  }
+}

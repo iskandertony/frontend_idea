@@ -10,6 +10,15 @@ interface TaskCardProps {
 const TaskCard: React.FC<TaskCardProps> = ({ task, isOverdue }) => {
   const [isEditing, setIsEditing] = useState(false);
 
+  // Функция форматирования даты в формат dd.mm.yyyy
+  const formatDate = (timestamp: number): string => {
+    const date = new Date(timestamp);
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}.${month}.${year}`;
+  };
+
   return (
     <div className={`task-card ${isOverdue ? 'overdue' : ''} ${isEditing ? 'editing' : ''}`}>
       {isEditing ? (
@@ -19,8 +28,8 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, isOverdue }) => {
         </div>
       ) : (
         <div>
-          <p>Начало: {new Date(task.startDay).toLocaleDateString()}</p>
-          <p>Окончание: {new Date(task.endDay).toLocaleDateString()}</p>
+          <p>Начало: {formatDate(task.startDay)}</p>
+          <p>Окончание: {formatDate(task.endDay)}</p>
           <p>Описание: {task.text}</p>
           <button onClick={() => setIsEditing(true)}>✏</button>
         </div>

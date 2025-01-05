@@ -8,7 +8,7 @@ $color-blue: #0184CF;
 .kanban-board {
   max-width: 1920px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 40px;
   display: flex;
   gap: 20px;
   min-height: 100vh;
@@ -54,4 +54,22 @@ $color-blue: #0184CF;
   }
 }
 
+
+.header {
+  padding: 64px 40px 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+  .header-title {
+    color: #FFFFFFDE  ;
+    font-family: "Inter", sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 28px;
+    letter-spacing: 0.0036em;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+  }
+}
 
